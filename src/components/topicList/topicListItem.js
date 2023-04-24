@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import VideoPlayer from './VideoPlayer';
+import VideoPlayer from '../videoPlayer/videoPlayer';
 
 const TopicListItem = ({ topic }) => {
   return (

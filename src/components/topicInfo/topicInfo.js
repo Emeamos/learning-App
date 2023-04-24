@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import VideoPlayer from './VideoPlayer';
 
 const TopicInfo = ({ topic }) => {
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{topic.title}</Text>

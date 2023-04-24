@@ -26,7 +26,9 @@ const SubjectList = () => {
       <FlatList
         data={subjects}
         renderItem={({ item }) => (
-          <SubjectListItem subject={item.name} onPress={handlePress} />
+          <TouchableOpacity onPress={() => handlePress(item)}>
+          <SubjectListItem subject={item.name} />
+          </TouchableOpacity>
         )}
         keyExtractor={(item) => item._id.toString()}
       />

@@ -10,7 +10,7 @@ const VideoPlayer = ({ topicId }) => {
   useEffect(() => {
     const fetchVideoUrl = async () => {
       try {
-        const response = await axios.get(`/topics/${topicId}`);
+        const response = await axios.get(`https://learningapp-api.onrender.com/api/subject/${subjectId}/topics/${topicId}`);
         setVideoUrl(response.data.videoUrl);
       } catch (error) {
         console.error(error);

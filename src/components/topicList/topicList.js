@@ -1,16 +1,25 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const TopicList = ({ topics, onPress }) => {
+
+const TopicList = ({ topics }) => {
+  const navigation = useNavigation();
+
+  const handlePress = (topicId) => {
+    navigation.navigate('Topic Info', { topicId});
+  };
+
   return (
     <View style={styles.container}>
-      {topics.map(topic => (
+      {topics && topics.map(topic => (
         <TouchableOpacity
           style={styles.itemContainer}
           key={topic._id}
-          onPress={() => onPress(topic)}
+          onPress={() => handlePress(topic)}
         >
           <Text style={styles.title}>{topic.title}</Text>
+          
         </TouchableOpacity>
       ))}
     </View>
