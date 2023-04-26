@@ -18,7 +18,7 @@ const TopicInfoScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       {topics ? (
-        <TopicListItem topic={topic} />
+        <TopicListItem topic={topics} />
       ) : (
         <Text>Loading...</Text>
       )}
