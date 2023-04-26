@@ -51,6 +51,76 @@
 
 // export default TopicScreen;
 
+// import React, { useState, useEffect } from 'react';
+// import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+// import { getTopicsBySubjectId } from '../utils/api';
+// import TopicList from '../components/topicList/topicList';
+
+// const TopicScreen = ({ route, navigation }) => {
+//   const { subjectId } = route.params;
+//   const [topics, setTopics] = useState([]);
+
+//   useEffect(() => {
+//     const fetchTopics = async () => {
+//       try {
+//         const res = await getTopicsBySubjectId(subjectId);
+//         setTopics(res);
+//       } catch (err) {
+//         console.log(err);
+//       }
+//     };
+
+//     fetchTopics();
+//   }, [subjectId]);
+
+//   const handlePress = (topicId) => {
+//     navigation.navigate('Topic Info', { topicId });
+//   };
+
+//   // const renderItem = ({ item }) => (
+//   //   <TouchableOpacity style={styles.item} onPress={() => handlePress(item._id)}>
+//   //     <Text style={styles.title}>{item.title}</Text>
+//   //   </TouchableOpacity>
+//   // );
+
+//   return (
+//     <View style={styles.container}>
+//       <FlatList
+//   data={topics}
+//   renderItem={({ item }) => (
+//     <TouchableOpacity
+//       style={styles.container}
+//       onPress={() => handlePress(item)}
+//     >
+//       <TopicList subject={item.title} style={styles.title}/>
+//     </TouchableOpacity>
+//   )}
+//   keyExtractor={item => item._id}
+//   contentContainerStyle={styles.container}
+// />
+//     </View>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//   },
+//   item: {
+//     backgroundColor: '#f9c2ff',
+//     padding: 20,
+//     marginVertical: 8,
+//     marginHorizontal: 16,
+//   },
+//   title: {
+//     fontSize: 32,
+//   },
+// });
+
+// export default TopicScreen;
+
+
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { getTopicsBySubjectId } from '../utils/api';
@@ -79,7 +149,7 @@ const TopicScreen = ({ route, navigation }) => {
 
   const renderItem = ({ item }) => (
     <TouchableOpacity style={styles.item} onPress={() => handlePress(item._id)}>
-      <Text style={styles.title}>{item.title}</Text>
+      <TopicList subject={item.title} />
     </TouchableOpacity>
   );
 
@@ -89,7 +159,7 @@ const TopicScreen = ({ route, navigation }) => {
         data={topics}
         renderItem={renderItem}
         keyExtractor={item => item._id}
-        ListHeaderComponent={<TopicList topics={topics} />}
+        contentContainerStyle={styles.listContainer}
       />
     </View>
   );
@@ -106,11 +176,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
   },
-  title: {
-    fontSize: 32,
+  listContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
   },
 });
 
 export default TopicScreen;
-
-

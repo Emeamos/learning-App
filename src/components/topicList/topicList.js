@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View,FlatList, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 
 const TopicList = ({ topics }) => {
@@ -11,18 +11,31 @@ const TopicList = ({ topics }) => {
   };
 
   return (
-    <View style={styles.container}>
-      {topics && topics.map(topic => (
-        <TouchableOpacity
-          style={styles.itemContainer}
-          key={topic._id}
-          onPress={() => handlePress(topic)}
-        >
-          <Text style={styles.title}>{topic.title}</Text>
+    // <View style={styles.container}>
+    //   {topics && topics.map(topic => (
+    //     <TouchableOpacity
+    //       style={styles.itemContainer}
+    //       key={topic._id}
+    //       onPress={() => handlePress(topic)}
+    //     >
+    //       <Text style={styles.title}>{topic.title}</Text>
           
-        </TouchableOpacity>
-      ))}
-    </View>
+    //     </TouchableOpacity>
+    //   ))}
+    // </View>
+    <FlatList
+  data={topics}
+  renderItem={({ item }) => (
+    <TouchableOpacity
+      style={styles.itemContainer}
+      onPress={() => handlePress(item._id)}
+    >
+      <Text style={styles.title}>{item.title}</Text>
+    </TouchableOpacity>
+  )}
+  keyExtractor={item => item._id}
+  contentContainerStyle={styles.container}
+/>
   );
 };
 
